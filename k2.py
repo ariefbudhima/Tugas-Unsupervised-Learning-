@@ -19,52 +19,49 @@ label = []
 centroids = []
 x0 = 0
 x0_j = 0
-Xpindah = [0,0,0,0,0]
+
+Xpindah = [0,0,0,0,0,0,0]
+Ypindah = [0,0,0,0,0,0,0]
 #random centroid
 for x in range(7):
     centroids.append([random.uniform(0,maxi),random.uniform(0,maxi)])
 
 
-def penentuan(Xpindah):
+def penentuan(centroids, Xpindah, Ypindah):
+    C_move = [0,0,0,0,0,0,0]
+
     for j in range(len(arr)):
         z = 0
         x = float((arr[j][0]-centroids[0][0])**2 + (arr[j][1]-centroids[0][1])**2)**1/2
         for i in range(1,len(centroids)):
-            y = float((arr[j][0]-centroids[i][0])**2 + (arr[j][1]-centroids[i][1])**2)
+            y = float((arr[j][0]-centroids[i][0])**2 + (arr[j][1]-centroids[i][1])**2)**1/2
             if x > y:
                 x = y
                 z = i
-        if z == 0:
-            Xpindah[0] += arr[j][0]
+        for asa in range(7):
+            if z == asa:
+                Xpindah[asa] += arr[j][0]
+                Ypindah[asa] += arr[j][1]
+                C_move[asa]+=1
 
-        elif z==1:
-            Xpindah[1] += arr[j][0]
-
-        elif z==2:
-            Xpindah[2] += arr[j][0]
-
-        elif z==3:
-            Xpindah[3] += arr[j][0]
-
-            # print(z)
         label.append(z)
+    for i in range(7):
+        if C_move[i]==0:
+            C_move[i] = 1
+        pindah(centroids, Xpindah, Ypindah, C_move,i)
 
-    print("xpindah0  =",Xpindah[0]/maxi)
-    print("xpindah1  =",Xpindah[1]/maxi)
-    print("xpindah2  =",Xpindah[2]/maxi)
-    print("xpindah3  =",Xpindah[3]/maxi)
 
-def pindah(x0,y):
-    for i in range(len(arr)):
-        if label[i]==0:
-            x0 += arr[i][0]
-            y+=1
-    # print('jumlah x0=',x0)
-    # print(y)
-    # print(x0/y)
+def pindah(centroids, Xpindah, Ypindah, C_move,i):
+    print("xpindah ",i,"  =",Xpindah[i]/C_move[i])
+    print("ypindah ",i,"  =",Ypindah[i]/C_move[i])
+    print(C_move[i])
+    centroids[i] = [Xpindah[i]/C_move[i], Ypindah[i]/C_move[i]]
 
-penentuan(Xpindah)
-pindah(x0,x0_j)
+# def
+
+#-------------------------------------------------------------utama-----------------------------------------------------------
+penentuan(centroids, Xpindah, Ypindah)
+# pindah(x0,x0_j)
 for i in range(len(arr)):
     plt.plot(arr[i][0], arr[i][1], color[label[i]])
 
