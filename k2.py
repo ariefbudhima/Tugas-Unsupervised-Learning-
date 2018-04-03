@@ -65,7 +65,7 @@ def penentuan(centroids, Xpindah, Ypindah):
 
     for i in range(len(arr)):
         plt.plot(arr[i][0], arr[i][1], color[label[i]])
-        
+
     plt.show()
 
 def pindah(centroids, Xpindah, Ypindah, C_move,i):
