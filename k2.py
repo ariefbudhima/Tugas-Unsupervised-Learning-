@@ -72,7 +72,8 @@ def pindah(centroids, Xpindah, Ypindah, C_move,i):
     print("xpindah ",i,"  =",Xpindah[i]/C_move[i])
     print("ypindah ",i,"  =",Ypindah[i]/C_move[i])
     print(C_move[i])
-    centroids[i] = [Xpindah[i]/C_move[i], Ypindah[i]/C_move[i]]
+    if C_move[i] != 1:
+        centroids[i] = [Xpindah[i]/C_move[i], Ypindah[i]/C_move[i]]
 
     plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
 
