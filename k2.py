@@ -11,7 +11,6 @@ arr = np.array(df)
 maxi = max(arr[:,0])
 if maxi<max(arr[:,1]):
     maxi = max(arr[:,1])
-# print(maxi)
 
 color = ["r.", "g.", "b.", "c.", "y.", "w.", 'm.']
 color1 = ["r", "g", "b", "c", "y", "w", "m"]
@@ -28,6 +27,11 @@ for x in range(7):
 
 
 def penentuan(centroids, Xpindah, Ypindah):
+
+
+
+    #masukkan centroid ke dalam pyplot
+
     C_move = [0,0,0,0,0,0,0]
 
     for j in range(len(arr)):
@@ -45,11 +49,24 @@ def penentuan(centroids, Xpindah, Ypindah):
                 C_move[asa]+=1
 
         label.append(z)
+
+
+    for i in range(len(arr)):
+        plt.plot(arr[i][0], arr[i][1], color[label[i]])
+
+    for i in range(len(centroids)):
+        plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
+    plt.show()
+
     for i in range(7):
         if C_move[i]==0:
             C_move[i] = 1
         pindah(centroids, Xpindah, Ypindah, C_move,i)
 
+    for i in range(len(arr)):
+        plt.plot(arr[i][0], arr[i][1], color[label[i]])
+        
+    plt.show()
 
 def pindah(centroids, Xpindah, Ypindah, C_move,i):
     print("xpindah ",i,"  =",Xpindah[i]/C_move[i])
@@ -57,16 +74,18 @@ def pindah(centroids, Xpindah, Ypindah, C_move,i):
     print(C_move[i])
     centroids[i] = [Xpindah[i]/C_move[i], Ypindah[i]/C_move[i]]
 
+    plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
+
 # def
 
 #-------------------------------------------------------------utama-----------------------------------------------------------
 penentuan(centroids, Xpindah, Ypindah)
-# pindah(x0,x0_j)
-for i in range(len(arr)):
-    plt.plot(arr[i][0], arr[i][1], color[label[i]])
+
+# for i in range(len(arr)):
+#     plt.plot(arr[i][0], arr[i][1], color[label[i]])
 
 
 #masukkan centroid ke dalam pyplot
-for i in range(len(centroids)):
-    plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
-plt.show()
+# for i in range(len(centroids)):
+#     plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
+# plt.show()
