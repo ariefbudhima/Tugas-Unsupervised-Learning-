@@ -27,7 +27,7 @@ class KMeans:
     C_move1 = [0,0,0,0,0,0,0]
     penanda = False
     #random centroid
-    for x in range(7):
+    for x in range(4):
         centroids.append([random.uniform(0,maxi),random.uniform(0,maxi)])
 
     # for i in range(len(centroids)):
@@ -39,18 +39,12 @@ class KMeans:
     def penentuan(self):
         self.penanda = False
         del self.label[:]
-        # for i in range(len(centroids)):
-        #     self.Xpindah[i] = 0;
-        #     self.Ypindah[i] = 0
-        #     self.C_move[i] = 0
         self.Xpindah = [0,0,0,0,0,0,0]
         self.Ypindah = [0,0,0,0,0,0,0]
         self.C_move = [0,0,0,0,0,0,0]
         x = 0
 
         #masukkan centroid ke dalam pyplot
-
-
         for j in range(0,len(self.arr)):
             z = 0
             x = float((self.arr[j][0]-self.centroids[0][0])**2 + (self.arr[j][1]-self.centroids[0][1])**2)**1/2
@@ -112,6 +106,3 @@ class KMeans:
 #-----------------------------------------------------------main-----------------------------------------------
 km = KMeans()
 km.penentuan()
-
-
-# print(km.label)
