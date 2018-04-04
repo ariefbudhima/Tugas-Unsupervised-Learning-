@@ -14,8 +14,8 @@ class KMeans:
     if maxi<max(arr[:,1]):
         maxi = max(arr[:,1])
 
-    color = ["r.", "g.", "b.", "c.", "y.", "w.", 'm.']
-    color1 = ["r", "g", "b", "c", "y", "w", "m"]
+    color = ["r.", "g.", "b.", "c.", "y.", "k.", 'm.']
+    color1 = ["r", "g", "b", "c", "y", "k", "m"]
     label = []
     centroids = []
     x0 = 0
@@ -29,22 +29,29 @@ class KMeans:
     #random centroid
     for x in range(7):
         centroids.append([random.uniform(0,maxi),random.uniform(0,maxi)])
+
+    # for i in range(len(centroids)):
+    #     Xpindah.append(0)
+    #     Ypindah.append(0)
+    #     C_move.append(0)
+    #     C_move1.append(0)
 #-----------------------------------------------------------------------------------------------
     def penentuan(self):
         self.penanda = False
         del self.label[:]
+        # for i in range(len(centroids)):
+        #     self.Xpindah[i] = 0;
+        #     self.Ypindah[i] = 0
+        #     self.C_move[i] = 0
         self.Xpindah = [0,0,0,0,0,0,0]
         self.Ypindah = [0,0,0,0,0,0,0]
         self.C_move = [0,0,0,0,0,0,0]
         x = 0
 
-        # print(len(self.label))
-        #
-    
         #masukkan centroid ke dalam pyplot
 
 
-        for j in range(len(self.arr)):
+        for j in range(0,len(self.arr)):
             z = 0
             x = float((self.arr[j][0]-self.centroids[0][0])**2 + (self.arr[j][1]-self.centroids[0][1])**2)**1/2
             for i in range(0,len(self.centroids)):
@@ -52,13 +59,15 @@ class KMeans:
                 if x >= y:
                     x = y
                     z = i
-            for asa in range(len(self.color)):
+            self.label.append(z)
+            # print(self.color)
+            for asa in range(0,len(self.centroids)):
                 if z == asa:
                     self.Xpindah[asa] += self.arr[j][0]
                     self.Ypindah[asa] += self.arr[j][1]
                     self.C_move[asa]+=1
 
-            self.label.append(z)
+
 
 
         # print(len(self.label ))
@@ -74,7 +83,7 @@ class KMeans:
         if self.C_move != self.C_move1:
             self.penanda = True
 
-        for i in range(7):
+        for i in range(0,len(self.centroids)):
             if self.C_move[i]==0:
                 self.C_move[i] = 1
             self.pindah(i, self.C_move)
@@ -95,9 +104,9 @@ class KMeans:
     def pindah(self, i, C_move):
         self.C_move1 = self.C_move
         if C_move[i] != 1:
-            # self.penanda = True
             self.centroids[i] = [self.Xpindah[i]/C_move[i], self.Ypindah[i]/C_move[i]]
-
+        else:
+            C_move[i] = 0
         self.plt.scatter(self.centroids[i][0], self.centroids[i][1], c=self.color1[i], marker = "x", s=150)
 
 #-----------------------------------------------------------main-----------------------------------------------
