@@ -81,12 +81,3 @@ def pindah(centroids, Xpindah, Ypindah, C_move,i):
 
 #-------------------------------------------------------------utama-----------------------------------------------------------
 penentuan(centroids, Xpindah, Ypindah)
-
-# for i in range(len(arr)):
-#     plt.plot(arr[i][0], arr[i][1], color[label[i]])
-
-
-#masukkan centroid ke dalam pyplot
-# for i in range(len(centroids)):
-#     plt.scatter(centroids[i][0], centroids[i][1], c=color1[i], marker = "x", s=150)
-# plt.show()
