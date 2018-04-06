@@ -5,7 +5,7 @@ class KMeans:
     import random
     import time
 
-    df = pd.read_csv('TrainsetTugas2.csv', sep='\t')
+    df = pd.read_csv('TestsetTugas2.csv', sep='\t', header=0)
 
     arr = np.array(df)
 
@@ -27,7 +27,7 @@ class KMeans:
     C_move1 = [0,0,0,0,0,0,0]
     penanda = False
     #random centroid
-    for x in range(4):
+    for x in range(3):
         centroids.append([random.uniform(0,maxi),random.uniform(0,maxi)])
 
     # for i in range(len(centroids)):
@@ -71,7 +71,7 @@ class KMeans:
         for i in range(0,len(self.centroids)):
             self.plt.scatter(self.centroids[i][0], self.centroids[i][1], c=self.color1[i], marker = "x", s=150)
         self.plt.show(block=False)
-        self.time.sleep(1)
+        self.time.sleep(0.5)
         self.plt.close()
 
         if self.C_move != self.C_move1:
@@ -87,7 +87,7 @@ class KMeans:
 
         if self.penanda:
             self.plt.show(block=False)
-            self.time.sleep(1)
+            self.time.sleep(0.5)
             self.plt.close()
         else:
             self.plt.show()
