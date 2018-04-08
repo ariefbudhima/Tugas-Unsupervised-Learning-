@@ -1,3 +1,5 @@
+#Author Arief Budhiman / 1301154360
+
 class KMeans:
     import numpy as np
     import matplotlib.pyplot as plt
@@ -9,10 +11,12 @@ class KMeans:
 
     arr = np.array(df)
 
+    f.write("This is line %d\r\n" % (i+1))
+
     #cari koordinat maksimal
     maxi = max(arr[:,0])
-    if maxi<max(arr[:,1]):
-        maxi = max(arr[:,1])
+    maxi2 = max(arr[:,1])
+
 
     color = ["r.", "g.", "b.", "c.", "y.", "k.", 'm.']
     color1 = ["r", "g", "b", "c", "y", "k", "m"]
@@ -28,13 +32,8 @@ class KMeans:
     penanda = False
     #random centroid
     for x in range(3):
-        centroids.append([random.uniform(0,maxi),random.uniform(0,maxi)])
-
-    # for i in range(len(centroids)):
-    #     Xpindah.append(0)
-    #     Ypindah.append(0)
-    #     C_move.append(0)
-    #     C_move1.append(0)
+        centroids.append([random.uniform(0,maxi),random.uniform(0,maxi2)])
+    print(centroids)
 #-----------------------------------------------------------------------------------------------
     def penentuan(self):
         self.penanda = False
@@ -71,7 +70,7 @@ class KMeans:
         for i in range(0,len(self.centroids)):
             self.plt.scatter(self.centroids[i][0], self.centroids[i][1], c=self.color1[i], marker = "x", s=150)
         self.plt.show(block=False)
-        self.time.sleep(0.5)
+        self.time.sleep(2)
         self.plt.close()
 
         if self.C_move != self.C_move1:

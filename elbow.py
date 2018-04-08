@@ -1,3 +1,5 @@
+#Author Arief Budhiman/1301154360
+
 from sklearn.cluster import KMeans
 from sklearn import metrics
 from scipy.spatial.distance import cdist
@@ -5,19 +7,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import time
+
+#baca data
 df = pd.read_csv('TestsetTugas2.csv', sep='\t', header=0)
 arr = np.array(df)
-# fig = plt.figure(1)
-# ax = fig.add_subplot(1, 1, 1)
 
 x = arr[:,0]
 y = arr[:,1]
-# ax.scatter(x, y)
-# plt.show(block=False)
-# time.sleep(1)
-# plt.close()
-# create new plot and data
-plt.plot()
+
 X = np.array(list(zip(x, y))).reshape(len(x), 2)
 # determine k
 distortions = []
